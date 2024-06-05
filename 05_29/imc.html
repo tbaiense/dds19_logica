@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt_BR">
+
+<head>
+    <title>Calculadora de IMC</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <link rel="icon" href="./icon.jpeg">
+    <link rel="stylesheet" href="estilo.css">
+    <script>
+        let peso = Number(window.prompt("Digite seu peso em kg:"));
+        let altura = Number(window.prompt("Digite sua altura em metros:"));
+        let imc = peso / (altura**2);
+        imc *= 100;
+        imc = Math.round(imc);
+        imc /= 100;
+        window.alert(`IMC CALCULADO: ${imc} kg/m²`);
+        if (imc < 18.49) {
+            console.log("Peso abaixo do normal");
+        } else if (imc < 25) {
+            console.log("Faixa normal");
+        } else if (imc < 30) {
+            console.log("Peso acima do normal");
+        } else if (imc < 35) {
+            console.log("Obesidade grau 1");
+        } else if (imc < 40) {
+            console.log("Obesidade grau 2");
+        } else {
+            console.log("Obesidade grau 3");
+        }
+
+    </script>
+</head>
+
+<body>
+    <span class="meu_span" style="display: block; margin: 300px 0;">Parágrafo de teste.</span>
+    <span class="meu_span" style="display: block; margin: 300px 0;">Parágrafo de teste.</span>
+    <span class="meu_span" style="display: block; margin: 300px 0;">Parágrafo de teste.</span>
+    <span class="meu_span" style="display: block; margin: 300px 0;">Parágrafo de teste.</span>
+    <span class="meu_span" style="display: block; margin: 300px 0;">Parágrafo de teste.</span>
+    <span class="meu_span" style="display: block; margin: 300px 0;">Parágrafo de teste.</span>
+    <span class="meu_span" style="display: block; margin: 300px 0;">Parágrafo de teste.</span>
+    <span id="ultimo" class="meu_span" style="display: block; margin: 300px 0;">ùltimo parágrafo</span>
+</body>
+
+</html>
