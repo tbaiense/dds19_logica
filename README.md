@@ -2,6 +2,8 @@
 
 Primeiros passos no JavaScript :smiley:
 
+Trabalhando com variáveis, laços de repetição e funções!
+
 ## Descrição
 
 Este repositório tem como intuito armazenar os seguintes arquivos, relacionados às aulas iniciais de desenvolvimento Web:
