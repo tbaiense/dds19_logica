@@ -1,0 +1,38 @@
+<html lang="pt_BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script defer>
+        "use strict";
+        /*
+        Atividade nº 2.
+        Descrição:
+             Desenvolva um programa que leia a idade de uma pessoa e determine a sua categoria: infantil (0-12 anos), 
+             adolescente (13-17 anos), adulto (18-59 anos) ou idoso (60 anos ou mais)
+        */
+
+        //Variáveis
+        const INF = 12;
+        const ADOL = 17;
+        const ADUL = 59;
+        let str = '';
+        let idade;
+        
+        //Execução
+        idade = +(window.prompt('Digite sua idade:', '27'));
+        if (idade <= INF) {
+            str = 'Infantil';
+        } else if (idade <= ADOL) {
+            str = 'Adolescente';
+        } else if (idade <= ADUL) {
+            str = 'Adulto';
+        } else {
+            str = 'Idoso';
+        }
+        window.alert("Você é categorizado como " + str);
+    </script>
+</head>
+<body>
+</body>
+</html>

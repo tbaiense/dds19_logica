@@ -1,0 +1,42 @@
+<html lang="pt_BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        "use strict";
+        /*
+        Atividade nº 1:
+        Descrição:
+            Escreva um algoritmo que calcule a média de quatro notas e determine se o aluno foi aprovado (média >= 7), em recuperação (média >= 5 e < 7) ou reprovado (média < 5).
+        */
+
+        //Variáveis
+        const SIZE = 4;
+        const APROV = 7;
+        const MED = 5;
+        let notas = Array(SIZE);
+        let media = 0;
+        //Execução
+        for (let x = 0; x < SIZE; x++) {
+            notas[x] = Number(window.prompt(`Insira a ${x+1} nota:`, '7.5'));
+        }
+        for (let n of notas) {
+            media += n;
+        }
+        console.log(media);
+        media = Math.floor(media / SIZE);
+        let str = `Sua média: ${media}\n`;
+        if (media >= APROV) {
+            str += 'Aprovado!';
+        } else if (media >= 5) {
+            str += 'Recuperação';
+        } else {
+            str +='Reprovado';
+        }
+        window.prompt(str);
+    </script>
+</head>
+<body>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<html lang="pt_BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script defer>
+        "use strict";
+        /*
+        Atividade nº 7:
+        Descrição:
+            Escreva um algoritmo que leia 10 números e conte quantos são positivos e quantos são negativos.
+        */
+
+        //Variáveis
+        const TAM = 10
+        let nums = [];
+        let input;
+        //Execução
+        for (let n=0; n < TAM; n++) {
+            input = +(window.prompt(`Insira o ${n+1} número:`));
+            if (input !== null) {
+                nums.push(input);
+            } else {
+                break;
+            }
+        }
+
+        let qntPos= 0;
+        let qntNeg= 0;
+        nums.forEach((num) => {
+            (num > 0) ? qntPos++ : (num < 0) ? qntNeg++ : null ;
+        });
+        
+        window.alert(`Entre os números\n\n ${nums.join(', ')}\n\nForam encontrados:\n- ${qntPos} números positivos;\n- ${qntNeg} números negativos.`);
+    </script>
+</head>
+<body>
+</body>
+</html>

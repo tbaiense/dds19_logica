@@ -1,0 +1,32 @@
+<html lang="pt_BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script defer>
+        "use strict";
+        /*
+        Atividade nº 8:
+        Descrição:
+            Desenvolva um programa que leia 5 números e armazene em um array. Em seguida, exiba os números na ordem inversa.
+        */
+
+        //Variáveis
+        const TAM = 5;
+        let array = [];
+
+        //Execução
+        for (let n=0, input; n < TAM; n++) {
+            input = window.prompt(`Digite o ${n+1} número:`);
+            if (input !== null) {
+                array[n] = +input;
+            } else {
+                break;
+            }
+        }
+        window.alert(`Números na ordem natural:\n\n${array.join(', ')}\n\nNúmeros na ordem inversa:\n\n${array.reverse().join(', ')}`);
+    </script>
+</head>
+<body>
+</body>
+</html>

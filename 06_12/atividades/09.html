@@ -1,0 +1,36 @@
+<html lang="pt_BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script defer>
+        "use strict";
+        /*
+        Atividade nº 9:
+        Descrição:
+            Crie um algoritmo que leia 10 números e armazene em um array. Em seguida, calcule e exiba a soma de todos os números armazenados.
+        */
+
+        //Variáveis
+        let array = Array(10);
+        let str = '', input;
+        let soma = 0;
+
+        //Execução
+        for (let i=0; i<array.length; i++) {
+            input = window.prompt(`Escreva o ${i+1}º número:\n\nPressine 'Cancelar', caso deseje terminar de inserir antes do ${array.length}º número.`, '0');
+            //Checa se a entrada não é vazia, se não é numérica e se o usuário apertou 'Cancelar'
+            if (Number.isNaN(+input)) {
+                window.alert(`Desculpe, mas '${input}' não é uma entrada válida. Tente novamente.`);
+                i--;
+            } else if (input !== null && input !== '') {
+                str += `${array[i] = +(Number.parseInt(input, 10))}` + ', '; //Concatena os ítens do array na String 'str', separando os elementos com ', '.
+                soma += array[i];
+            } else break;
+        }
+        (soma) ? window.alert(`Na array\n\n${str}\n\nA soma de todos os elementos foi igual a ${soma}.`) : window.alert('Nenhum número foi inserido, portanto o resultado da soma é 0.');
+    </script>
+</head>
+<body>
+</body>
+</html>

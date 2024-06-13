@@ -1,0 +1,47 @@
+<html lang="pt_BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script defer>
+        "use strict";
+        /*
+        Atividade nº 10:
+        Descrição:
+            Escreva um programa que leia 10 números e armazene em um array. Em seguida, encontre e exiba o maior e o menor número armazenado.
+        */
+
+        //Variáveis
+        let array = Array(10);
+        let str = '', input;
+        let menor, maior, qntInseridos = 0; 
+        
+        //Execução
+        while (qntInseridos<array.length) {
+            input = window.prompt(`Escreva o ${qntInseridos+1}º número:\n\nPressine 'Cancelar', caso deseje terminar de inserir antes do ${array.length}º número.`, '0');
+            //Checa se a entrada não é vazia, se não é numérica e se o usuário apertou 'Cancelar'
+            if (Number.isNaN(+input)) {
+                window.alert(`Desculpe, mas '${input}' não é uma entrada válida. Tente novamente.`);
+            } else if (input !== null && input !== '') {
+                array[qntInseridos] = +(Number.parseInt(input, 10)); //Garante que qualquer número inserido seja um inteiro de base 10.
+                //Armazena o maior e menor número.
+                if (qntInseridos === 0) {
+                    menor=maior= array[qntInseridos];
+                } else {
+                    if (array[qntInseridos] > maior) {
+                        maior = array[qntInseridos];
+                    }
+                    if (array[qntInseridos] < menor) {
+                        menor = array[qntInseridos];
+                    }
+                };
+                qntInseridos++;
+            } else break; //Termina a inserção de números caso o usuário cancele ou insira um entrada vazia.
+        }
+        array.forEach(num => {str += num + ', '}); //Concatena os ítens do array na String 'str', separando os elementos com ', '.
+        (qntInseridos) ? window.alert(`Na array\n\n${str}\n\nO maior número encontrado foi '${maior}', na ${array.lastIndexOf(maior)+1}ª posição, e o menor, '${menor}', na ${array.lastIndexOf(menor)+1}ª posição.`) : window.alert('Nenhum número foi inserido, portanto o resultado não é possível determinar o menor e maior número.');
+    </script>
+</head>
+<body>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<html lang="pt_BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script defer>
+        "use strict";
+        /*
+        Atividade nº 3
+        Descrição:
+            Crie um algoritmo que leia um número e verifique se ele é par ou ímpar.
+        */
+
+        //Variáveis
+        let num = +(window.prompt('Digite um número para verificar se é impar ou par:'));
+        
+        //Execução
+        let str = '';
+        if (num % 2 == 0) {
+            str += 'par';
+        } else {
+            str += 'impar';
+        }
+        window.alert(`O número digitado, ${num}, é ${str}.`);
+    </script>
+</head>
+<body>
+</body>
+</html>

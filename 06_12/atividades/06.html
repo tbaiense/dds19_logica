@@ -1,0 +1,48 @@
+<html lang="pt_BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script defer>
+        "use strict";
+        /*
+        Atividade nº 6:
+        Descrição:
+            Crie um programa que calcule o fatorial de um número informado pelo usuário.
+        */
+
+        //Variáveis
+        let input, resultado;
+
+        //Funções
+        let f = function (n=0) {
+            return (n > 1) ? n * f(--n) : 1;
+        };
+
+        //Realiza checagens antes de submeter o parâmetro à função recursiva f().
+        function calcularFatorial(n=undefined) {
+            if (Number.isNaN(+n)) {
+                return NaN; //Parâmetro é uma string impossível de ser diretamente convertida para real.
+            } else if (n !== null && n !== '') {
+                if (n <= 0 || n > 100) {
+                    return NaN;
+                } else {
+                    return f(n);
+                }
+            } else return undefined; //Caso em que o prompt foi fechado com 'Cancelar' ou uma sting vazia foi submetida.
+        }
+        
+        //Execução
+        input = window.prompt(`Escreva o número para calcular o fatorial:\n\nPressine 'Cancelar', caso deseje cancelar a entrada.`, '3');
+        resultado = calcularFatorial(input);
+        //Checa se a entrada não é vazia, se não é numérica e se o usuário apertou 'Cancelar'.
+        if (Number.isNaN(resultado)) {
+            window.alert(`Desculpe, mas '${input}' não é uma entrada válida. Tente novamente usando números positivos maiores que 0 e menores que 100 no formato '31' ou '12.67'.`);
+        } else if (resultado !== null && resultado !== undefined) {
+            window.alert(`O fatorial do número inserido, ${input}, é igual a ${resultado}`); //Garante que qualquer número inserido seja um real de base 10.
+        }
+    </script>
+</head>
+<body>
+</body>
+</html>
