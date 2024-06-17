@@ -2,25 +2,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script defer>
-        "use strict";
-        /*
-        Atividade nº 4
-        Descrição:
-            Escreva um programa que receba um ano e determine se ele é bissexto.
-        */
-
-        //Variáveis
-        let ano = +(window.prompt('Digite um ano para verificar se é bissexto:'))
-        let eBissexto = true;
-        //Execução
-        if (ano % 4 !== 0 || ano % 4 === 0 && (ano % 100 === 0 && ano % 400 !== 0)) {
-            eBissexto = false;
-        }
-        window.alert(`O ano digitado, ${ano}, ${(eBissexto) ? 'é Bissexto.': 'não é Bissexto...'}`);
-    </script>
+    <title>Atividade nº 4</title>
 </head>
 <body>
+    <h1>Atividade nº 4</h1>
+    <hr>
+    <section>
+        <h2>Descrição:</h2>
+        <p>Escreva um programa que receba um ano e determine se ele é bissexto.</p>
+    </section>
+    <section>
+        <form id="form_ano">
+            <h2>Dados:</h2>
+            <ul>
+                <li>
+                    <label for="ano">
+                        <span class="block">Verificar ano:</span>
+                        <input type="number" min="0" max="2038" required id="ano" placeholder="2012">
+                    </label>
+                </li>
+                <hr>
+                <li><button type="button" id="botao_ano">Verificar ano</button></li>
+            </ul>
+            <h2>Resultado:</h2>
+            <output for="form_ano"><span id="span_ano" class="bold"></span></output>
+            <p>Insira um ano no campo acima e pressione o botão 'Verificar ano' para exibir se o ano é bissexto.</p>
+        </form>
+    </section> 
 </body>
+<script>
+    "use strict";
+    const input = document.querySelector('#ano');
+    const button = document.querySelector('#botao_ano');
+    const output = document.querySelector('#span_ano');
+
+    button.addEventListener('click', () => {
+        let ano = +input.value;
+        let eBissexto = true;
+        if (Number.isInteger(ano) && ano !== '') {
+                if (ano % 4 !== 0 || ano % 4 === 0 && (ano % 100 === 0 && ano % 400 !== 0)) {
+                eBissexto = false;
+                output.setAttribute('style', 'color: red; font-weight: bold');
+                } else {
+                    output.setAttribute('style', 'color: green; font-weight: bold');
+                }
+            output.textContent = `O ano digitado ${(eBissexto) ? 'é Bissexto.': 'não é Bissexto.'}`;
+        } else {
+            window.alert('Digite um ano válido e tente novamente.');
+        }
+    });
+</script>
+<style>
+    html {
+        font-family: sans-serif;
+        text-align: center;
+        font-size: 1.2em;
+    }
+    body {
+        margin: 5%;
+    }
+    h2 {
+        margin-bottom: 10px;
+    }
+    p {
+        box-sizing: border-box;
+        padding: 0 3%;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    .block {
+        display: block;
+        margin-bottom: 5px;
+    }
+    input,
+    select,
+    textarea,
+    button {
+        font-family: inherit;
+        font-size: 100%;
+        box-sizing: border-box;
+        min-width: 150px;
+        padding: 0;
+        margin: 0;
+    }
+    button {
+        padding: 2px 30px;
+    }
+    form ul {
+        margin: 0;
+        padding: 0;
+    }
+    
+    form li {
+        list-style: none;
+        margin-bottom: 10px;
+    }
+    input {
+        text-align: inherit;
+    }
+    .bold {
+        font-weight: bold;
+    }
+</style>
 </html>

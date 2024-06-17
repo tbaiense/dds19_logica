@@ -17,25 +17,25 @@
             <ul>
                 <li>
                     <label for="n1">
-                        <span>1ª Nota: </span>
+                        <span class="block">1ª Nota: </span>
                         <input type="number" required id="n1" min="0" max="10" step="1" placeholder="7.4">
                     </label>
                 </li>
                 <li>
                     <label for="n2">
-                        <span>2ª Nota: </span>
+                        <span class="block">2ª Nota: </span>
                         <input type="number" required id="n2" min="0" max="10" step="1" >
                     </label>
                 </li>
                 <li>
                     <label for="n3">
-                        <span>3ª Nota: </span>
+                        <span class="block">3ª Nota: </span>
                         <input type="number" required id="n3" min="0" max="10" step="1">
                     </label>
                 </li>
                 <li>
                     <label for="n4">
-                        <span>4ª Nota: </span>
+                        <span class="block">4ª Nota: </span>
                         <input type="number" required id="n4" min="0" max="10" step="1">
                     </label>
                 </li>
@@ -43,7 +43,7 @@
                 <li><button type="button" id="calc_media">Calcular média</button></li>
             </ul>
             <h2>Resultado:</h2>
-            <output for="form_media"><span id="n_media"></span></output>
+            <output for="form_media"><span id="n_media" class="bold"></span></output>
             <p>Insira os dados necessários acima e pressione o botão 'Calcular média' para exibir a nota média.</p>
         </form>
     </section>
@@ -91,15 +91,55 @@
     });
 </script>
 <style>
+    html {
+        font-family: sans-serif;
+        text-align: center;
+        font-size: 1.2em;
+    }
+    body {
+        margin: 5%;
+    }
+    h2 {
+        margin-bottom: 10px;
+    }
+    p {
+        box-sizing: border-box;
+        padding: 0 3%;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    .block {
+        display: block;
+        margin-bottom: 5px;
+    }
+    input,
+    select,
+    textarea,
+    button {
+        font-family: inherit;
+        font-size: 100%;
+        box-sizing: border-box;
+        min-width: 150px;
+        padding: 0;
+        margin: 0;
+    }
+    button {
+        padding: 2px 30px;
+    }
+    form ul {
+        margin: 0;
+        padding: 0;
+    }
+    
     form li {
         list-style: none;
         margin-bottom: 10px;
-        text-align: center;
     }
     input {
-        margin-left: 10px;
-        min-width: 100px;
         text-align: inherit;
+    }
+    .bold {
+        font-weight: bold;
     }
 </style>
 </html>

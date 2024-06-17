@@ -84,27 +84,5 @@
 </style>
 <script>
     "use strict";
-
-    //Variáveis
-    const input = document.querySelector('#num');
-    const button = document.querySelector('#botao_num');
-    const output = document.querySelector('#span_num');
-
-    button.addEventListener('click', () => {
-        const num = +input.value;
-        if (!Number.isNaN(num) && num !== '') {
-            let str;
-            if (num % 2 == 0) {
-                str = 'PAR';
-                output.setAttribute('style', 'color: orange; font-weight: bold')
-            } else {
-                str = 'ÍMPAR';
-                output.setAttribute('style', 'color: blue; font-weight: bold')
-            }
-            output.textContent = `O número digitado é ${str}.`;
-        } else {
-            window.alert('Digite um número válido e tente novamente.');
-        }
-    });
 </script>
 </html>

@@ -3,24 +3,79 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script defer>
-        "use strict";
-        /*
-        Atividade nº 5:
-        Descrição:
-            Implemente um algoritmo que exiba todos os números pares de 1 a 50.
-        */
-
-        //Variáveis
-        let str = '';
-
-        //Execução
-        for (let n = 2; n <= 50; n+=2) {
-            str += n + ", ";
-        }
-        window.alert("Os números pares entre 1 e 50 são:\n\n" + str);
-    </script>
 </head>
 <body>
+    <h1>Atividade nº 5:</h1>
+    <hr>
+    <section>
+        <h2>Descrição:</h2>
+        <p>Implemente um algoritmo que exiba todos os números pares de 1 a 50.</p>
+    </section>
+    <section>
+        <form id="form_num">
+                <hr>
+                <li><button type="button" id="botao_num">Gerar números</button></li>
+            </ul>
+            <h2>Resultado:</h2>
+            <output for="form_num"><span id="span_num" class="bold"></span></output>
+            <p>Pressione o botão 'Gerar números' para exibir os números gerados.</p>
+        </form>
+    </section>
 </body>
+<script>
+    "use strict";
+
+</script>
+<style>
+    html {
+        font-family: sans-serif;
+        text-align: center;
+        font-size: 1.2em;
+    }
+    body {
+        margin: 5%;
+    }
+    h2 {
+        margin-bottom: 10px;
+    }
+    p {
+        box-sizing: border-box;
+        padding: 0 3%;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    .block {
+        display: block;
+        margin-bottom: 5px;
+    }
+    input,
+    select,
+    textarea,
+    button {
+        font-family: inherit;
+        font-size: 100%;
+        box-sizing: border-box;
+        min-width: 150px;
+        padding: 0;
+        margin: 0;
+    }
+    button {
+        padding: 2px 30px;
+    }
+    form ul {
+        margin: 0;
+        padding: 0;
+    }
+    
+    form li {
+        list-style: none;
+        margin-bottom: 10px;
+    }
+    input {
+        text-align: inherit;
+    }
+    .bold {
+        font-weight: bold;
+    }
+</style>
 </html>
