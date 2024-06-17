@@ -2,41 +2,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script>
-        "use strict";
-        /*
-        Atividade nº 1:
-        Descrição:
-            Escreva um algoritmo que calcule a média de quatro notas e determine se o aluno foi aprovado (média >= 7), em recuperação (média >= 5 e < 7) ou reprovado (média < 5).
-        */
-
-        //Variáveis
-        const SIZE = 4;
-        const APROV = 7;
-        const MED = 5;
-        let notas = Array(SIZE);
-        let media = 0;
-        //Execução
-        for (let x = 0; x < SIZE; x++) {
-            notas[x] = Number(window.prompt(`Insira a ${x+1} nota:`, '7.5'));
-        }
-        for (let n of notas) {
-            media += n;
-        }
-        console.log(media);
-        media = Math.floor(media / SIZE);
-        let str = `Sua média: ${media}\n`;
-        if (media >= APROV) {
-            str += 'Aprovado!';
-        } else if (media >= 5) {
-            str += 'Recuperação';
-        } else {
-            str +='Reprovado';
-        }
-        window.prompt(str);
-    </script>
+    <title>Atividade nº 1</title>
 </head>
 <body>
+    <h1>Atividade nº 1</h1>
+    <hr>
+    <section>
+        <h2>Descrição:</h2>
+        <p>Escreva um algoritmo que calcule a média de quatro notas e determine se o aluno foi aprovado (média >= 7), em recuperação (média >= 5 e < 7) ou reprovado (média < 5).</p>
+    </section>
+    <section>
+        <form id="form_media">
+            <h2>Dados:</h2>
+            <ul>
+                <li>
+                    <label for="n1">
+                        <span>1ª Nota: </span>
+                        <input type="number" required id="n1" min="0" max="10" step="1" placeholder="7.4">
+                    </label>
+                </li>
+                <li>
+                    <label for="n2">
+                        <span>2ª Nota: </span>
+                        <input type="number" required id="n2" min="0" max="10" step="1" >
+                    </label>
+                </li>
+                <li>
+                    <label for="n3">
+                        <span>3ª Nota: </span>
+                        <input type="number" required id="n3" min="0" max="10" step="1">
+                    </label>
+                </li>
+                <li>
+                    <label for="n4">
+                        <span>4ª Nota: </span>
+                        <input type="number" required id="n4" min="0" max="10" step="1">
+                    </label>
+                </li>
+                <hr>
+                <li><button type="button" id="calc_media">Calcular média</button></li>
+            </ul>
+            <h2>Resultado:</h2>
+            <output for="form_media"><span id="n_media"></span></output>
+            <p>Insira os dados necessários acima e pressione o botão 'Calcular média' para exibir a nota média.</p>
+        </form>
+    </section>
 </body>
+<script>
+    "use strict";
+
+    //Variáveis
+    const SIZE = 4;
+    const APROV = 7;
+    const MED = 5;
+    const n1 = document.querySelector('#n1');
+    const n2 = document.querySelector('#n2');
+    const n3 = document.querySelector('#n3');
+    const n4 = document.querySelector('#n4');
+    const n_media = document.querySelector('#n_media');
+    const button = document.querySelector('#calc_media');
+
+    //Execução
+    button.addEventListener('click', () => {
+        if (!Number.isNaN(n1.value) && !Number.isNaN(n2.value) && !Number.isNaN(n3.value) && !Number.isNaN(n4.value) &&
+            n1.value !== '' && n2.value !== '' && n3.value !== '' && n4.value !== '') {
+            let notas = Array(SIZE);
+            let media = 0;
+
+            notas = [+n1.value, +n2.value, +n3.value, +n4.value];
+            notas.forEach((n) => {media += n});
+            console.log(media);
+            media = Math.floor(media / SIZE);
+            let str = `Sua média: ${media} pontos. Você está `;
+            if (media >= APROV) {
+                str += 'Aprovado!';
+                n_media.setAttribute('style', 'color: green');
+            } else if (media >= 5) {
+                str += 'de Recuperação!';
+                n_media.setAttribute('style', 'color: orange');
+            } else {
+                str +='Reprovado!';
+                n_media.setAttribute('style', 'color: red');
+            }
+            n_media.textContent = str;
+        } else {
+            window.alert("Preencha todos os campos de nota para calcular a média.");
+        }
+    });
+</script>
+<style>
+    form li {
+        list-style: none;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+    input {
+        margin-left: 10px;
+        min-width: 100px;
+        text-align: inherit;
+    }
+</style>
 </html>

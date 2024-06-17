@@ -2,37 +2,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script defer>
-        "use strict";
-        /*
-        Atividade nº 2.
-        Descrição:
-             Desenvolva um programa que leia a idade de uma pessoa e determine a sua categoria: infantil (0-12 anos), 
-             adolescente (13-17 anos), adulto (18-59 anos) ou idoso (60 anos ou mais)
-        */
-
-        //Variáveis
-        const INF = 12;
-        const ADOL = 17;
-        const ADUL = 59;
-        let str = '';
-        let idade;
-        
-        //Execução
-        idade = +(window.prompt('Digite sua idade:', '27'));
-        if (idade <= INF) {
-            str = 'Infantil';
-        } else if (idade <= ADOL) {
-            str = 'Adolescente';
-        } else if (idade <= ADUL) {
-            str = 'Adulto';
-        } else {
-            str = 'Idoso';
-        }
-        window.alert("Você é categorizado como " + str);
-    </script>
+    <title>Atividade nº 2</title>
 </head>
 <body>
+    <h1>Atividade nº 2</h1>
+    <hr>
+    <section>
+        <h2>Descrição:</h2>
+        <p>Desenvolva um programa que leia a idade de uma pessoa e determine a sua categoria: infantil (0-12 anos), adolescente (13-17 anos), adulto (18-59 anos) ou idoso (60 anos ou mais).</p>
+    </section>
+    <section>
+        <form id="form_age">
+            <h2>Dados:</h2>
+            <ul>
+                <li>
+                    <label for="age">
+                        <span>Idade: </span>
+                        <input type="number" required id="age" min="1" max="130" step="1" placeholder="27" value="10" pattern="[0-9]{1,3}">
+                    </label>
+                </li>
+                <hr>
+                <li><button type="button" id="botao_categoria">Determinar categoria</button></li>
+            </ul>
+            <h2>Resultado:</h2>
+            <output for="form_categoria"><span id="span_categoria"></span></output>
+            <p>Insira sua idade no campo acima e pressione o botão 'Determinar categoria' para exibir sua categoria.</p>
+        </form>
+    </section>
 </body>
+<script defer>
+    "use strict";
+    //Variáveis
+    const age = document.querySelector('#age');
+    const button = document.querySelector('#botao_categoria');
+    const output = document.querySelector('#span_categoria');
+    
+    const INF = 12;
+    const ADOL = 17;
+    const ADUL = 59;
+
+    
+    //Execução
+    button.addEventListener('click', () => {
+        const idade = +age.value;
+        let str;
+        if (Number.isInteger(idade) && idade > 0 && idade <= 130) {
+            if (idade <= INF) {
+                str = 'Infantil';
+            } else if (idade <= ADOL) {
+                str = 'Adolescente';
+            } else if (idade <= ADUL) {
+                str = 'Adulto';
+            } else {
+                str = 'Idoso';
+            }
+            output.textContent = `Você é categorizado como ${str}.`;
+        } else {
+            window.alert('Digite uma idade válida e tente novamente.');
+        }
+    });
+</script>
+<style>
+    form li {
+        list-style: none;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+    input {
+        margin-left: 10px;
+        min-width: 100px;
+        text-align: inherit;
+    }
+    #age:invalid {
+        background-color: lightpink;
+    }
+</style>
 </html>
