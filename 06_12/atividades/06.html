@@ -2,47 +2,125 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script defer>
-        "use strict";
-        /*
-        Atividade nº 6:
-        Descrição:
-            Crie um programa que calcule o fatorial de um número informado pelo usuário.
-        */
+    <title>Atividade nº 6</title>
+</head>
+<body>
+    <h1>Atividade nº 6</h1>
+    <hr>
+    <section>
+        <h2>Descrição:</h2>
+        <p>Crie um programa que calcule o fatorial de um número informado pelo usuário.</p>
+    </section>
+    <section>
+        <form id="form_num">
+            <h2>Dados:</h2>
+            <ul>
+                <li>
+                    <label for="num">
+                        <span class="block">Verificar número:</span>
+                        <input type="number" required id="num" placeholder="5" pattern="[0-9]+">
+                    </label>
+                </li>
+                <hr>
+                <li><button type="button" id="botao_num">Verificar número</button></li>
+            </ul>
+            <h2>Resultado:</h2>
+            <output for="form_num"><span id="span_num" class="bold"></span></output>
+            <p>Insira um número no campo acima e pressione o botão 'Verificar número' para exibir se o número é par ou impar.</p>
+        </form>
+    </section>
+</body>
+<script>
+    "use strict";
+    const input = document.querySelector('#num');
+    const button = document.querySelector('#botao_num');
+    const output = document.querySelector('#span_num');
 
-        //Variáveis
-        let input, resultado;
+    //Funções
+    let f = function (n=0) {
+        return (n > 1) ? n * f(--n) : 1;
+    };
 
-        //Funções
-        let f = function (n=0) {
-            return (n > 1) ? n * f(--n) : 1;
-        };
-
-        //Realiza checagens antes de submeter o parâmetro à função recursiva f().
-        function calcularFatorial(n=undefined) {
-            if (Number.isNaN(+n)) {
-                return NaN; //Parâmetro é uma string impossível de ser diretamente convertida para real.
-            } else if (n !== null && n !== '') {
-                if (n <= 0 || n > 100) {
-                    return NaN;
-                } else {
-                    return f(n);
-                }
-            } else return undefined; //Caso em que o prompt foi fechado com 'Cancelar' ou uma sting vazia foi submetida.
-        }
-        
-        //Execução
-        input = window.prompt(`Escreva o número para calcular o fatorial:\n\nPressine 'Cancelar', caso deseje cancelar a entrada.`, '3');
-        resultado = calcularFatorial(input);
+    //Realiza checagens antes de submeter o parâmetro à função recursiva f().
+    function calcularFatorial(n=undefined) {
+        if (Number.isNaN(+n)) {
+            return NaN; //Parâmetro é uma string impossível de ser diretamente convertida para real.
+        } else if (n !== null && n !== '') {
+            if (n <= 0 || n > 100) {
+                return NaN;
+            } else {
+                return f(n);
+            }
+        } else return undefined; //Caso em que o prompt foi fechado com 'Cancelar' ou uma string vazia foi submetida.
+    };
+    
+    //Execução
+    button.addEventListener('click', () => {
+        let resultado = calcularFatorial(+input.value);
         //Checa se a entrada não é vazia, se não é numérica e se o usuário apertou 'Cancelar'.
         if (Number.isNaN(resultado)) {
             window.alert(`Desculpe, mas '${input}' não é uma entrada válida. Tente novamente usando números positivos maiores que 0 e menores que 100 no formato '31' ou '12.67'.`);
         } else if (resultado !== null && resultado !== undefined) {
-            window.alert(`O fatorial do número inserido, ${input}, é igual a ${resultado}`); //Garante que qualquer número inserido seja um real de base 10.
+            output.textContent = `O fatorial do número inserido é igual a ${resultado}`;
         }
-    </script>
-</head>
-<body>
-</body>
+    });
+
+</script>
+<style>
+    html {
+        font-family: sans-serif;
+        text-align: center;
+        font-size: 1.2em;
+    }
+    body {
+        margin: 5%;
+    }
+    h2 {
+        margin-bottom: 10px;
+    }
+    p, output {
+        box-sizing: border-box;
+        padding: 0 3%;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    .block {
+        display: block;
+        margin-bottom: 5px;
+    }
+    input,
+    select,
+    textarea,
+    button {
+        font-family: inherit;
+        font-size: 100%;
+        box-sizing: border-box;
+        min-width: 150px;
+        padding: 0;
+        margin: 0;
+    }
+    button {
+        padding: 2px 30px;
+    }
+    form ul {
+        margin: 0;
+        padding: 0;
+    }
+    
+    form li {
+        list-style: none;
+        margin-bottom: 10px;
+    }
+    input {
+        text-align: inherit;
+    }
+    output {
+        display: block;
+        min-width: 300px;
+        max-width: 600px;
+    }
+    .bold {
+        font-weight: bold;
+    }
+</style>
 </html>

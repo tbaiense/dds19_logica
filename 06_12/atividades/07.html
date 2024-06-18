@@ -2,38 +2,165 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script defer>
-        "use strict";
-        /*
-        Atividade nº 7:
-        Descrição:
-            Escreva um algoritmo que leia 10 números e conte quantos são positivos e quantos são negativos.
-        */
+    <title>Atividade nº 7</title>
 
-        //Variáveis
-        const TAM = 10
-        let nums = [];
-        let input;
-        //Execução
-        for (let n=0; n < TAM; n++) {
-            input = +(window.prompt(`Insira o ${n+1} número:`));
-            if (input !== null) {
-                nums.push(input);
-            } else {
-                break;
-            }
-        }
-
-        let qntPos= 0;
-        let qntNeg= 0;
-        nums.forEach((num) => {
-            (num > 0) ? qntPos++ : (num < 0) ? qntNeg++ : null ;
-        });
-        
-        window.alert(`Entre os números\n\n ${nums.join(', ')}\n\nForam encontrados:\n- ${qntPos} números positivos;\n- ${qntNeg} números negativos.`);
-    </script>
 </head>
 <body>
+    <h1>Atividade nº 7</h1>
+    <hr>
+    <section>
+        <h2>Descrição:</h2>
+        <p>Escreva um algoritmo que leia 10 números e conte quantos são positivos e quantos são negativos.</p>
+    </section>
+    <section>
+        <form id="form_num">
+            <h2>Dados:</h2>
+            <ul>
+                <li>
+                    <label for="num">
+                        <span class="block">Adicionar número:</span>
+                        <input type="number" required id="num" placeholder="5" pattern="[0-9]+">
+                        <button type="button" id="botao_add_num">+</button>
+                    </label>
+                </li>
+                    <label for="num_adiconados">
+                        <span class="block">Números adicionados:</span>
+                        <select id="num_adiconados" disabled>
+                        </select>
+                        <button type="button" id="botao_reset_num" style="opacity: 50%">Limpar seleção</button>
+                    </label>
+                <hr>
+                <li><button type="button" id="botao_num">Verificar números</button></li>
+            </ul>
+            <h2>Resultado:</h2>
+            <output for="form_num">
+                <span id="out_pos" class="bold"></span>
+                <span id="out_neg" class="bold"></span>
+            </output>
+            <p>Insira os números no campo acima, pressione o botão '+' e, ao fim, pressione o botão 'Verificar números' para exibir quantos números são negativos e positivos.</p>
+        </form>
+    </section>
 </body>
+<script defer>
+    "use strict";
+
+    //Variáveis
+    const input = document.querySelector('#num');
+    const botao_add = document.querySelector('#botao_add_num');
+    const botao_reset_num = document.querySelector('#botao_reset_num');
+    const botao = document.querySelector('#botao_num');
+    const out_pos = document.querySelector('#out_pos');
+    const out_neg = document.querySelector('#out_neg');
+    const num_adicionados = document.querySelector('#num_adiconados');
+
+    const TAM = 10;
+    let nums = [];
+
+    //Adiciona o número ao dropdown #num_adiconados
+    botao_add.addEventListener('click', () => {
+        if (nums.length <= TAM) {
+            let n = Number.parseFloat(input.value)
+            if (input !== null, !Number.isNaN(n)) {
+                num_adicionados.removeAttribute('disabled');
+                botao_reset_num.removeAttribute('style');
+                nums.push(n);
+                let option = document.createElement('option');
+                option.textContent = n;
+                num_adicionados.appendChild(option);
+                input.value = '';
+                if (nums.length >= TAM) {
+                    botao_add.setAttribute('style', 'opacity: 50%');
+                    input.setAttribute('disabled', '');
+                }
+            } else {
+                window.alert("O número inserido é inválido. Tente novamente com números reais positivos ou negativos.");
+            }
+        } else {
+            window.alert("Limite de números atingido. Não é possível adicionar mais números à verificação.");
+        }
+    });
+
+    botao_reset_num.addEventListener('click', () => {
+        nums = [];
+
+    });
+
+</script>
+<style>
+    html {
+        font-family: sans-serif;
+        font-size: 1.2em;
+    }
+    body {
+        margin: 5%;
+        text-align: center;
+    }
+    h2 {
+        margin-bottom: 10px;
+    }
+    p, output {
+        box-sizing: border-box;
+        padding: 0 3%;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    .block {
+        display: block;
+        margin-bottom: 5px;
+    }
+    input,
+    select,
+    textarea,
+    button {
+        font-family: inherit;
+        font-size: 100%;
+        box-sizing: border-box;
+        min-width: 150px;
+        min-height: 1.8rem;
+        padding: 0;
+        margin: 0;
+    }
+    button {
+        padding: 2px 30px;
+        vertical-align: top;
+    }
+    form ul {
+        margin: 0;
+        padding: 0;
+    }
+    
+    form li {
+        list-style: none;
+        margin-bottom: 10px;
+    }
+    input, select {
+        text-align: inherit;
+    }
+    output {
+        display: block;
+        min-width: 300px;
+        max-width: 400px;
+    }
+    .bold {
+        font-weight: bold;
+    }
+    #botao_add_num,
+    #botao_reset_num {
+        max-width: 5%;
+        min-width: fit-content;
+        padding: 0 0.5em;
+    }
+    #botao_reset_num {
+        font-size: 0.8rem;
+
+    }
+    #num {
+        width: auto;
+        min-width: 100px;
+    }
+    label {
+        display: block;
+        box-sizing: content-box;
+    }
+</style>
 </html>
