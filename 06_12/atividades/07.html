@@ -20,28 +20,46 @@
                     <label for="num">
                         <span class="block">Adicionar número:</span>
                         <input type="number" required id="num" placeholder="5" pattern="[0-9]+">
-                        <button type="button" id="botao_add_num">+</button>
                     </label>
+                    <button type="button" id="botao_add_num">+</button>
                 </li>
-                    <label for="num_adiconados">
-                        <span class="block">Números adicionados:</span>
-                        <select id="num_adiconados" disabled>
+                <li>
+                    <label for="num_adicionados">
+                        <span class="block">Números adicionados: <span id="meter_span"></span></span>
+                        <select id="num_adicionados" disabled>
                         </select>
-                        <button type="button" id="botao_reset_num" style="opacity: 50%">Limpar seleção</button>
                     </label>
+                    <button type="button" id="botao_reset_num" style="opacity: 50%">Limpar seleção</button>
+                </li>
+                <li>
+                    <meter min="0" low="6" max="10" high="8" optimum="0" id="meter_num_adicionados" value="0" class="block"></meter>
+                </li>
                 <hr>
                 <li><button type="button" id="botao_num">Verificar números</button></li>
             </ul>
             <h2>Resultado:</h2>
-            <output for="form_num">
-                <span id="out_pos" class="bold"></span>
-                <span id="out_neg" class="bold"></span>
-            </output>
+            <table>
+                <caption>Tabela de números positivos e negativos encontrados</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">TIPO</th>
+                        <th scope="col">Quantidade</th>
+                    </tr>
+                </thead>
+                <tr class=".row">
+                    <th scope="row">Positivo</th>
+                    <td><output for="num_adicionados"><span id="out_pos" >0</span></output></td>
+                </tr>
+                <tr class=".row">
+                    <th scope="row">Negativo</th>
+                    <td><output for="num_adicionados"><span id="out_neg">0</span></output></td>
+                </tr>
+            </table>
             <p>Insira os números no campo acima, pressione o botão '+' e, ao fim, pressione o botão 'Verificar números' para exibir quantos números são negativos e positivos.</p>
         </form>
     </section>
 </body>
-<script defer>
+<script>
     "use strict";
 
     //Variáveis
@@ -51,14 +69,17 @@
     const botao = document.querySelector('#botao_num');
     const out_pos = document.querySelector('#out_pos');
     const out_neg = document.querySelector('#out_neg');
-    const num_adicionados = document.querySelector('#num_adiconados');
+    const num_adicionados = document.getElementById('num_adicionados');
+    const meter_span = document.getElementById('meter_span');
+    const meter_num_adicionados = document.getElementById('meter_num_adicionados');
 
     const TAM = 10;
     let nums = [];
 
-    //Adiciona o número ao dropdown #num_adiconados
+    meter_span.textContent = `0/${TAM}`;
+    //Adiciona o número ao dropdown #num_adicionados
     botao_add.addEventListener('click', () => {
-        if (nums.length <= TAM) {
+        if (nums.length < TAM) {
             let n = Number.parseFloat(input.value)
             if (input !== null, !Number.isNaN(n)) {
                 num_adicionados.removeAttribute('disabled');
@@ -68,23 +89,47 @@
                 option.textContent = n;
                 num_adicionados.appendChild(option);
                 input.value = '';
+                meter_num_adicionados.value++;
+                meter_span.textContent = `${meter_num_adicionados.value}/${TAM}`;
                 if (nums.length >= TAM) {
                     botao_add.setAttribute('style', 'opacity: 50%');
                     input.setAttribute('disabled', '');
                 }
             } else {
-                window.alert("O número inserido é inválido. Tente novamente com números reais positivos ou negativos.");
+                window.alert("O número inserido é inválido. Tente novamente com números reais.");
             }
         } else {
             window.alert("Limite de números atingido. Não é possível adicionar mais números à verificação.");
         }
     });
-
+    //Reseta a seleção de números
     botao_reset_num.addEventListener('click', () => {
-        nums = [];
-
+        if (nums.length > 0) {
+            if (num.length = TAM) {
+                botao_add.removeAttribute('style')
+                input.removeAttribute('disabled');
+            }
+            nums = [];
+            num_adicionados.replaceChildren();
+            num_adicionados.setAttribute('disabled', '');
+            botao_reset_num.setAttribute('style', 'opacity: 50%');
+            out_pos.textContent = 0;
+            out_neg.textContent = 0;
+        } else {
+            window.alert('Adicione um número à lista antes de limpá-la.');
+        }
     });
 
+    //Contabiliza quantos são negativos ou positivos
+    botao.addEventListener('click', () => {
+        let n = 0, p = 0;
+        nums.forEach((e) => {
+            e > 0 ? p++ : null;
+            e < 0 ? n++ : null; 
+        });
+        out_neg.textContent = n;
+        out_pos.textContent = p;
+    });
 </script>
 <style>
     html {
@@ -107,6 +152,9 @@
     .block {
         display: block;
         margin-bottom: 5px;
+    }
+    .inline {
+        display: inline;
     }
     input,
     select,
@@ -136,7 +184,7 @@
     input, select {
         text-align: inherit;
     }
-    output {
+    li output {
         display: block;
         min-width: 300px;
         max-width: 400px;
@@ -159,8 +207,37 @@
         min-width: 100px;
     }
     label {
-        display: block;
         box-sizing: content-box;
+    }
+    table {
+        table-layout: auto;
+        border-collapse: collapse;
+        border-spacing: 0;
+        text-align: center;
+        overflow: auto;
+        min-width: fit-content;
+        width: 90%;
+        max-width: 500px;
+        margin: 0 auto 1rem;
+    }
+    th,
+    td {
+        border: 2px solid gray;
+        padding: 0.2rem 1rem;
+    }
+    th {
+        white-space: normal;
+        background-color: lightskyblue;
+    }  
+    caption {
+        margin-bottom: 0.5rem;
+    }
+    #meter_span {
+        padding-right: 16px;
+    }
+    meter {
+        box-sizing: border-box;
+        width: 100%;
     }
 </style>
 </html>

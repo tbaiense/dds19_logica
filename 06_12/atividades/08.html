@@ -2,31 +2,193 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script defer>
-        "use strict";
-        /*
-        Atividade nº 8:
-        Descrição:
-            Desenvolva um programa que leia 5 números e armazene em um array. Em seguida, exiba os números na ordem inversa.
-        */
+    <title>Atividade nº 8:</title>
 
-        //Variáveis
-        const TAM = 5;
-        let array = [];
-
-        //Execução
-        for (let n=0, input; n < TAM; n++) {
-            input = window.prompt(`Digite o ${n+1} número:`);
-            if (input !== null) {
-                array[n] = +input;
-            } else {
-                break;
-            }
-        }
-        window.alert(`Números na ordem natural:\n\n${array.join(', ')}\n\nNúmeros na ordem inversa:\n\n${array.reverse().join(', ')}`);
-    </script>
 </head>
 <body>
+    <h1>Atividade nº 8</h1>
+    <hr>
+    <section>
+        <h2>Descrição:</h2>
+        <p>Desenvolva um programa que leia 5 números e armazene em um array. Em seguida, exiba os números na ordem inversa.</p>
+    </section>
+    <section>
+        <form id="form_num">
+            <h2>Dados:</h2>
+            <ul>
+                <li>
+                    <label for="num">
+                        <span class="block">Adicionar número:</span>
+                        <input type="number" required id="num" placeholder="5" pattern="[0-9]+">
+                    </label>
+                    <button type="button" id="botao_add_num">+</button>
+                </li>
+                <li>
+                    <label for="num_adiconados">
+                        <span class="block">Números adicionados: <span id="meter_span"></span></span>
+                        <select id="num_adicionados" disabled>
+                        </select>
+                    </label>
+                    <button type="button" id="botao_reset_num" style="opacity: 50%">Limpar seleção</button>
+                </li>
+                <li>
+                    <meter min="0" low="3" max="5" high="4" optimum="0" id="meter_num_adicionados" value="0" class="block"></meter>
+                </li>
+                <hr>
+                <li><button type="button" id="botao_num">Exibir inverso</button></li>
+            </ul>
+            <h2>Resultado:</h2>
+            <output for="num_adicionados" class="block"><span id="span_num" class="bold"></span></output>
+            <p>Insira os números no campo acima, pressione o botão '+' e, ao fim, pressione o botão 'Exibir inverso' para exibir os números inseridos na ordem inversa.</p>
+        </form>
+    </section>
 </body>
+<script defer>
+    "use strict";
+
+    //Variáveis
+    const input = document.querySelector('#num');
+    const botao_add = document.querySelector('#botao_add_num');
+    const botao_reset_num = document.querySelector('#botao_reset_num');
+    const botao = document.querySelector('#botao_num');
+    const num_adicionados = document.getElementById('num_adicionados');
+    const output = document.getElementById('span_num');
+
+    const TAM = 5;
+    let nums = [];
+    meter_span.textContent = `0/${TAM}`;
+    //Adiciona o número ao dropdown #num_adicionados
+    botao_add.addEventListener('click', () => {
+        if (nums.length < TAM) {
+            let n = Number.parseFloat(input.value)
+            if (input !== null, !Number.isNaN(n)) {
+                num_adicionados.removeAttribute('disabled');
+                botao_reset_num.removeAttribute('style');
+                nums.push(n);
+                let option = document.createElement('option');
+                option.textContent = n;
+                num_adicionados.appendChild(option);
+                input.value = '';
+                meter_num_adicionados.value++;
+                meter_span.textContent = `${meter_num_adicionados.value}/${TAM}`;
+                if (nums.length >= TAM) {
+                    botao_add.setAttribute('style', 'opacity: 50%');
+                    input.setAttribute('disabled', '');
+                }
+            } else {
+                window.alert("O número inserido é inválido. Tente novamente com números reais");
+            }
+        } else {
+            window.alert("Limite de números atingido. Não é possível adicionar mais números à verificação.");
+        }
+    });
+
+    //Reseta a seleção de números
+    botao_reset_num.addEventListener('click', () => {
+        if (nums.length > 0) {
+            if (num.length = TAM) {
+                botao_add.removeAttribute('style')
+                input.removeAttribute('disabled');
+            }
+            nums = [];
+            num_adicionados.replaceChildren();
+            num_adicionados.setAttribute('disabled', '');
+            botao_reset_num.setAttribute('style', 'opacity: 50%');
+            out_pos.textContent = 0;
+            out_neg.textContent = 0;
+        } else {
+            window.alert('Adicione um número à lista antes de limpá-la.');
+        }
+    });
+
+    //Exibe o resultado
+    botao.addEventListener('click', () => {
+        output.textContent = `${nums.reverse().join(' ')}`;
+    });
+</script>
+<style>
+    html {
+        font-family: sans-serif;
+        font-size: 1.2em;
+    }
+    body {
+        margin: 5%;
+        text-align: center;
+    }
+    h2 {
+        margin-bottom: 10px;
+    }
+    p, output {
+        box-sizing: border-box;
+        padding: 0 3%;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    .block {
+        display: block;
+        margin-bottom: 5px;
+    }
+    input,
+    select,
+    textarea,
+    button {
+        font-family: inherit;
+        font-size: 100%;
+        box-sizing: border-box;
+        min-width: 150px;
+        min-height: 1.8rem;
+        padding: 0;
+        margin: 0;
+    }
+    button {
+        padding: 2px 30px;
+        vertical-align: top;
+    }
+    form ul {
+        margin: 0;
+        padding: 0;
+    }
+    
+    form li {
+        list-style: none;
+        margin-bottom: 10px;
+    }
+    input, select {
+        text-align: inherit;
+    }
+    li output {
+        display: block;
+        min-width: 300px;
+        max-width: 400px;
+    }
+    .bold {
+        font-weight: bold;
+    }
+    #botao_add_num,
+    #botao_reset_num {
+        max-width: 5%;
+        min-width: fit-content;
+        padding: 0 0.5em;
+    }
+    #botao_reset_num {
+        font-size: 0.8rem;
+    }
+    #num {
+        width: auto;
+        min-width: 100px;
+    }
+    label {
+        box-sizing: content-box;
+    }
+    #meter_span {
+        padding-right: 16px;
+    }
+    meter {
+        box-sizing: border-box;
+        width: 100%;
+    }
+    #span_num {
+        margin-bottom: 16px;
+    }
+</style>
 </html>
