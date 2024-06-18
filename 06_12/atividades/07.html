@@ -6,7 +6,10 @@
 
 </head>
 <body>
-    <h1>Atividade nº 7</h1>
+    <h1><span class="nav" style="font-weight: 100; font-size: 16px; vertical-align: middle; margin: 0 16px;"><a href="./06.html">&lt; Anterior</a></span>
+        Atividade nº 7
+        <span class="nav" style="font-weight: 100; font-size: 16px; vertical-align: middle; margin: 0 16px;"><a href="./08.html">Próximo &gt;</a></span>
+    </h1>
     <hr>
     <section>
         <h2>Descrição:</h2>
@@ -115,6 +118,8 @@
             botao_reset_num.setAttribute('style', 'opacity: 50%');
             out_pos.textContent = 0;
             out_neg.textContent = 0;
+            meter_num_adicionados.value = 0;
+            meter_span.textContent = `0/${TAM}`;
         } else {
             window.alert('Adicione um número à lista antes de limpá-la.');
         }
