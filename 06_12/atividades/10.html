@@ -78,6 +78,13 @@
     const TAM = 10;
     let nums = [];
 
+    document.querySelector('form').addEventListener('submit', (e) => {
+        if (e.submitter === null) {
+            e.preventDefault();
+            botao_add.click();
+        }
+    });
+
     meter_span.textContent = `0/${TAM}`;
     //Adiciona o número ao dropdown #num_adicionados
     botao_add.addEventListener('click', () => {
